@@ -96,3 +96,131 @@ object  joaquin{
 		
 	}
 
+
+object presentacionLunaPark{
+		
+		var artistas = #{joaquin,lucia,luisAlberto}
+		
+		var lugar = lunaPark
+		
+		var fecha = new Date( day=20, month=4, year=2021 )
+		
+		method fecha() = fecha 
+		
+		method fecha( _fecha ){
+			fecha = _fecha 
+		} 
+		
+		
+		method artistas () = artistas
+		
+		method artistas ( _artistas ){
+			artistas= _artistas
+		}
+		
+		method lugar() = lugar
+		
+		method lugar ( _lugar ){
+			lugar= _lugar
+		}
+		
+		method capacidad() = self.lugar().capacidad(self.fecha())
+		
+		method cantidadDeArtistas() = self.artistas().size()  
+		
+		
+		method cache() = self.artistas().sum{artista => artista.cobrar(self)}
+		
+		
+	}
+	
+	object presentacionLaTrastienda{
+		
+		var artistas = #{joaquin,lucia,luisAlberto}
+		
+		var lugar = laTrastienda
+		
+		var fecha = new Date( day=15, month=11, year=2020 )
+		
+		method fecha() = fecha 
+		
+		method fecha( _fecha ){
+			fecha = _fecha 
+		} 
+		
+		
+		method artistas() = artistas
+		
+		method artistas ( _artistas ){
+			artistas= _artistas
+		}
+		
+		method lugar() = lugar
+		
+		method lugar ( _lugar ){
+			lugar= _lugar
+		}
+		
+		method cantidadDeArtistas() = self.artistas().size()  
+		
+		method capacidad() = self.lugar().capacidad(self.fecha())
+		
+		method cache() = self.artistas().sum{artista => artista.cobrar(self)}
+		
+	}
+	
+	object lunaPark{
+		
+		const  capacidad = 9290
+			
+		var nombre ="Luna Park"
+		
+		method capacidad(fecha) = self.capacidad()	
+		
+		
+		method nombre() = nombre 
+		
+				
+		method nombre( _nombre ){
+			nombre= _nombre
+		}
+		
+		method capacidad() = capacidad    
+	}
+
+	object laTrastienda {
+							
+		var nombre ="La Trastienda"
+		
+		method capacidad(fecha) =  400 + 300*fecha.internalDayOfWeek().gcd(6).div(6)
+		
+		method nombre() = nombre 
+		
+		method nombre( _nombre ){
+			nombre= _nombre
+		}    
+
+		
+	}
+
+	
+	object fender{
+		const valor = 10
+		method valor() = valor
+	}
+	
+	object gibson {
+		var valor = 15
+		
+		method valor() = valor
+		
+		method valor( _valor ){
+			valor = _valor
+		}
+		
+		method romper(){
+			self.valor(5)
+		}		
+		
+		
+	}
