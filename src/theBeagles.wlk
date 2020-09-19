@@ -1,4 +1,5 @@
 object  joaquin{
+
 	var  grupo = "Pimpinela"
 	
 	var cantidadDeCompanierosDeGrupo = 1
