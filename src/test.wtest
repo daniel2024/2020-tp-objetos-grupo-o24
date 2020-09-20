@@ -1,4 +1,4 @@
-import example.*
+import theBeagles.*
 
 
 describe "test Tp 1" {
@@ -16,7 +16,7 @@ describe "test Tp 1" {
         assert.equals(50, lucia.habilidad() )
     }
 
-    test "Hbailidad de Lucia como solista"{
+    test "Habilidad de Lucia como solista"{
         lucia.cantidadDeCompanierosDeGrupo(0)
         assert.equals(70, lucia.habilidad() )
     }
@@ -26,18 +26,18 @@ describe "test Tp 1" {
     }
 
     test "Habilidad de Luis Alberto tocando con la Gibson sana"{
-        luisAlberto.guitarra(Gibson)
+        luisAlberto.guitarra(gibson)
         assert.equals(100, luisAlberto.habilidad() )
     }
 
     test "Habilidad de luis alberto con la gibson no sana" {
         gibson.romper()
-        luisAlberto.guitarra(Gibson)
+        luisAlberto.guitarra(gibson)
         assert.equals(40, luisAlberto.habilidad() )
     }
 
     test "Queremos saber si Joaquín interpreta bien la canción “La Familia” "{
-        assert.that(joaquin.interpretarCancionBien(laFamilia))
+        assert.notThat(joaquin.interpretarCancionBien(laFamilia))
     }
     
     test "Queremos saber si Joaquín interpreta bien la canción “Cisne” "{
@@ -49,7 +49,7 @@ describe "test Tp 1" {
     }
 
       test "Queremos saber si Lucia interpreta bien la canción ““Cisne” "{
-        assert.that(lucia.interpretarCancionBien(cisne))
+        assert.notThat(lucia.interpretarCancionBien(cisne))
     }
 
     test "Queremos saber si Luis Alberto interpreta bien la canción “La Familia” "{
@@ -60,21 +60,20 @@ describe "test Tp 1" {
         assert.that(luisAlberto.interpretarCancionBien(cisne))
     }
 
-     test "Queremos cuano cobra Joaquín  por la presentación del Luna Park "{
-        assert.equals(50, joaquin.cobrar(lunaPark))
+     test "Queremos cuanto cobra Joaquín  por la presentación del Luna Park "{
+        assert.equals(50, joaquin.cobrar(presentacionLunaPark))
     }
 
     test "Queremos saber cuánto cobra Joaquín por la presentación de la Trastienda del 15/11/2020"{
-        laTrastienda.capacidad(15/11/2020)
-        assert.equals(50, joaquin.cobrar(laTrastienda))
+        assert.equals(50, joaquin.cobrar(presentacionLaTrastienda))
     }
 
     test "Queremos saber la capacidad de La Trastienda para el 08 de agosto del 2020"{
-        assert.equals(700, laTrastienda.capacidad(08/08/2020))
+        assert.equals(700, laTrastienda.capacidad(new Date(day=8 , month = 8 ,year =2020	 )))
     }
 
      test "Queremos saber la capacidad de La Trastienda para el 05 de agosto del 2020"{
-        assert.equals(400, laTrastienda.capacidad(05/08/2020))
+        assert.equals(400, laTrastienda.capacidad( new Date( day=5, month=7, year=2020) ) )
     }
 
      test "Queremos saber cuánto cobra Lucía por la presentación del Luna Park"{
@@ -82,7 +81,7 @@ describe "test Tp 1" {
     }
 
      test "Queremos saber cuánto cobra Lucía por la presentación de la Trastienda"{
-        assert.equals(400, lucia.cobrar(laTrastienda))
+        assert.equals(400, lucia.cobrar(presentacionLaTrastienda))
     }
 
     test "Queremos saber cuánto cobra Luis Alberto por la presentación del Luna Park"{
@@ -94,7 +93,7 @@ describe "test Tp 1" {
     }
 
       test "Queremos saber el costo de la presentación del Luna Park"{
-        assert.equals(1750, presentacionLunaPark.cobrar())
+        assert.equals(1750, presentacionLunaPark.cache())
     }
 
 
