@@ -17,11 +17,21 @@ object  joaquin{
 	method cantidadDeCompanierosDeGrupo() = cantidadDeCompanierosDeGrupo
 	
 
-	method habilidad()= 20 + 5*(self.cantidadDeCompanierosDeGrupo().limitBetween(0,1) )	
+	method habilidad(){
+	 	if(self.cantidadDeCompanierosDeGrupo()>0){
+			return  25;
+		}
+		return 20;
+	}
 	
 		
-	method cobrar(presentacion) =
-		 50 + 50*(1.div(presentacion.cantidadDeArtistas()))
+	method cobrar(presentacion) {
+		if(presentacion.cantidadDeArtistas()>1){
+			return 50;
+		}
+		return 100;
+		
+	}
 		
 	
 	method interpretarCancionBien( cancion )= cancion.duracion() > 300		
@@ -34,6 +44,9 @@ object  joaquin{
 	
 	var cantidadDeCompanierosDeGrupo = 1
 	
+	const limiteDePersonasParaCambiarDePrecio = 5000
+	
+	method limiteDePersonasParaCambiarDePrecio() = limiteDePersonasParaCambiarDePrecio
 	
     method cantidadDeCompanierosDeGrupo(_cantidadDeCompanierosDeGrupo){
 		cantidadDeCompanierosDeGrupo=_cantidadDeCompanierosDeGrupo
@@ -49,11 +62,20 @@ object  joaquin{
 	
 	method grupo() = grupo
 	
-	method habilidad()= 70 - 20*(self.cantidadDeCompanierosDeGrupo().limitBetween(0,1))
+	method habilidad(){
+		if(self.cantidadDeCompanierosDeGrupo() > 0){
+			return 50;
+		}
+		return 70
+	} 
 		
-	method cobrar(presentacion) =
-		 500 - 100*( ( 5000  - presentacion.capacidad() ).limitBetween(0,1) )
-	
+	method cobrar(presentacion){
+		if( (self.limiteDePersonasParaCambiarDePrecio() - presentacion.capacidad() ) < 0){
+			return 500;
+		}
+		return 400;
+	}
+		
 	method interpretarCancionBien( cancion )= cancion.letra().toLowerCase().contains("familia")
 	
 	}
@@ -65,9 +87,14 @@ object  joaquin{
 	object luisAlberto{
 		
 		var guitarra = fender
+			
+		const fechaLimiteParaCambioDePrecio = new Date(day=30, month=11, year=2020)
+		
+		
+		method fechaLimiteParaCambioDePrecio() = fechaLimiteParaCambioDePrecio
 		
 		method guitarra() = guitarra
-		
+			
 		method guitarra(_guitarra){
 			guitarra = _guitarra
 		}
@@ -76,7 +103,12 @@ object  joaquin{
 		
 	    method interpretarCancionBien( cancion )= true
 	    
-	    method cobrar(presentacion) = 1000 +  200*( presentacion.fecha() - new Date(day=30, month=11, year=2020) ).limitBetween(0,1)
+	    method cobrar(presentacion){
+	    	if( (self.fechaLimiteParaCambioDePrecio() - presentacion.fecha() ) > 0 ){
+	    		return 1000;
+	    	}
+	    	return 1200;
+	    } 
 		
 	}
 	
@@ -102,7 +134,7 @@ object presentacionLunaPark{
 		
 		var artistas = #{joaquin,lucia,luisAlberto}
 		
-		var lugar = lunaPark
+		const lugar = lunaPark
 		
 		var fecha = new Date( day=20, month=4, year=2021 )
 		
@@ -121,9 +153,6 @@ object presentacionLunaPark{
 		
 		method lugar() = lugar
 		
-		method lugar ( _lugar ){
-			lugar= _lugar
-		}
 		
 		method capacidad() = self.lugar().capacidad(self.fecha())
 		
@@ -139,7 +168,7 @@ object presentacionLunaPark{
 		
 		var artistas = #{joaquin,lucia,luisAlberto}
 		
-		var lugar = laTrastienda
+		const lugar = laTrastienda
 		
 		var fecha = new Date( day=15, month=11, year=2020 )
 		
@@ -158,10 +187,6 @@ object presentacionLunaPark{
 		
 		method lugar() = lugar
 		
-		method lugar ( _lugar ){
-			lugar= _lugar
-		}
-		
 		method cantidadDeArtistas() = self.artistas().size()  
 		
 		method capacidad() = self.lugar().capacidad(self.fecha())
@@ -174,33 +199,25 @@ object presentacionLunaPark{
 		
 		const  capacidad = 9290
 			
-		var nombre ="Luna Park"
-		
 		method capacidad(fecha) = self.capacidad()	
-		
-		
-		method nombre() = nombre 
-		
 				
-		method nombre( _nombre ){
-			nombre= _nombre
-		}
-		
 		method capacidad() = capacidad    
 	}
 
 	object laTrastienda {
 							
-		var nombre ="La Trastienda"
-		
-		method capacidad(fecha) =  400 + 300*fecha.internalDayOfWeek().gcd(6).div(6)
-		
-		method nombre() = nombre 
-		
-		method nombre( _nombre ){
-			nombre= _nombre
-		}    
+		method capacidad(fecha){
+			
+			if(fecha.dayOfWeek() == saturday){
+				return 700;
+			}
+			return 400;
+			
 
+		}  
+		
+		
+		
 		
 	}
 
