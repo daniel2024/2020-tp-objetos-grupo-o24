@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/theBeagles.wlk
 object  joaquin{
 
 	var  grupo = "Pimpinela"
@@ -242,3 +243,11 @@ object presentacionLunaPark{
 		
 		
 	}
+=======
+/** First Wollok example */
+object wollok {
+	method howAreYou() {
+		return 'I am Wolloktastic!'
+	}
+}
+>>>>>>> d63431964d6c379ab59c7603d97d1f2ad75ce47f:src/example.wlk
